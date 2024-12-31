@@ -3,13 +3,13 @@
 
   //Ngay, thang, nam sinh
 struct Date{
-	int month, day, year;
+	int day, month, year;
 };
   //Du lieu thong tin sinh vien
 struct Student{
 	char studentId[10];
 	char classroomId[10];
-	char name[20];
+	char name[30];
 	struct Date dateOfBirth;
 	bool gender;
 	char email[30];
