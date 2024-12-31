@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
 	int choice;
 	int subChoice;
-	struct Student students[100]={
+	struct Student students[50]={
 		{"1", "ENG24C", "Hoang Anh",{7,2,2005}, true, "test@gmail.com", "9890982241", "9837487"},
 	};
 	int n=1;
@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
 						break;
 					}
 					case 4:{
+						editInformation(students, n);						
 						break;
 					}
 					case 5:{
