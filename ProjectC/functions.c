@@ -120,6 +120,14 @@ void editInformation(struct Student students[50], int count){
 		    fgets(students[i].password, sizeof(students[i].password), stdin);
 		    students[i].password[strcspn(students[i].password, "\n")] = '\0';
 		    printf("Thong tin da duoc cap nhat thanh cong\n");
+		    printf("\n\t***Update The New Student***\n")
+			printf("|======================================================================================================================|\n");
+			printf("|\tID\t|ClassroomID\t|Name\t\t\t\t|Email\t\t\t\t|Phone\n");
+			printf("|======================================================================================================================|\n");
+			for( i=0; i<n;i++){
+				printInformation(students[i]);
+				printf(" |----------------------------------------------------------------------------------------------------------------------|\n");
+			}
 		}
 		if(!found){
 		printf("ID sinh vien khong ton tai hay nhap lai\n");
