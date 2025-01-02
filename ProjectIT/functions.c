@@ -26,22 +26,22 @@ void printMenuStudent(){
 	printf("\t================\n");
 }
 void printInformation(struct Student students){
-    printf("|\t%s", students.studentId);
-    printf("\t|%s\t", students.classroomId);
-    printf("\t|%s\t\t\t", students.name);
-    printf("|%s\t\t", students.email);
-    printf("\t|%s\t       ", students.phone);
+    printf("|\t%-8s", students.studentId);
+    printf("|%-15s", students.classroomId);
+    printf("|%-31s", students.name);
+    printf("|%-31s", students.email);
+    printf("|%-20s", students.phone);
 }
 
 void printListInformation(struct Student students[], int n){
 	int i;
 	printf("\n\t***All Students***\n");
-	printf("|======================================================================================================================|\n");
+	printf("|===============|===============|===============================|===============================|==========================|\n");
 	printf("|\tID\t|ClassroomID\t|Name\t\t\t\t|Email\t\t\t\t|Phone\n");
-	printf("|======================================================================================================================|\n");
+	printf("|===============|===============|===============================|===============================|==========================|\n");
 	for( i=0; i<n;i++){
 		printInformation(students[i]);
-		printf(" |----------------------------------------------------------------------------------------------------------------------|\n");
+		printf("\n|---------------|---------------|-------------------------------|-------------------------------|--------------------------|\n");
 	}
 }
 
@@ -170,16 +170,54 @@ void deleteStudent(struct Student students[50], int *n){
 void bubblesortStudent(struct Student students[50], int n){
 	struct Student temp;
 	int i,j;
-	
-	for(i=0;i<n;i++){
-		for(j=i+1;j<n;j++){
-			if(strcmp(students[i].name,students[j].name)>0){
-				temp=students[i];
-				students[i]=students[j];
-				students[j]=temp;
+	int choice; 
+	printf("Lua chon kieu sap xep(1.Tu A-Z; 2.Tu Z-A): ");
+	scanf("%d",&choice);
+	if(choice==1){ 
+		for(i=0;i<n;i++){
+			for(j=i+1;j<n;j++){
+				if(strcmp(students[i].name,students[j].name)>0){
+					temp=students[i];
+					students[i]=students[j];
+					students[j]=temp;
+				}
 			}
 		}
+	printf("Danh sach sinh vien da duoc sap xep thanh cong!!!");	
+	printListInformation(students, n);
 	}
+	if(choice==2){ 
+		for(i=0;i<n;i++){
+			for(j=i+1;j<n;j++){
+				if(strcmp(students[i].name,students[j].name)<0){
+					temp=students[i];
+					students[i]=students[j];
+					students[j]=temp;
+				}
+			}
+		}
 	printf("Danh sach sinh vien da duoc sap xep thanh cong!!!");
+	printListInformation(students, n);
+	}
+	if(choice!=1&&choice!=2){
+		printf("Lua chon sap xep khong hop le!!\n");
+	} 
 }
-
+void searchStudent(struct Student students[50], char* searchName, int n){
+	int found=0;
+	int i;
+	printf("\n\t***All Students***\n");
+	printf("|===============|===============|===============================|===============================|==========================|\n");
+	printf("|\tID\t|ClassroomID\t|Name\t\t\t\t|Email\t\t\t\t|Phone\n");
+	printf("|===============|===============|===============================|===============================|==========================|\n");
+	for( i=0; i<n;i++){
+		if(strstr(students[i].name,searchName)!=NULL){
+			printInformation(students[i]);
+			printf("\n|---------------|---------------|-------------------------------|-------------------------------|--------------------------|\n");
+			found=1; 
+		}
+	if(!found){
+		printf("Khong tim thay sinh vien trong danh sach.\n"); 
+	}	
+    }
+}

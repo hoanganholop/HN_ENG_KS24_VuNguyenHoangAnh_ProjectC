@@ -9,4 +9,4 @@ void addInformation(struct Student *std);
 void editInformation(struct Student students[50], int n);
 void deleteStudent(struct Student students[50], int *n); 
 void bubblesortStudent(struct Student students[50], int n);
- 
+void searchStudent(struct Student students[50],char* searchName, int n); 
