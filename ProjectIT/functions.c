@@ -21,6 +21,7 @@ void printMenuStudent(){
 	printf("\t[3] Search A Student.\n");
 	printf("\t[4] Edit A Student.\n");
 	printf("\t[5] Delete A Student.\n");
+	printf("\t[6] Sort List Students.\n");
 	printf("\t[0] Exit the Program.\n");
 	printf("\t================\n");
 }
@@ -91,8 +92,8 @@ void editInformation(struct Student students[50], int n) {
     scanf("%s", id);
     getchar();
     
-    for (i = 0; i < n; i++) {
-        if (strcmp(students[i].studentId, id) == 0) {
+    for (i=0; i<n; i++) {
+        if (strcmp(students[i].studentId, id)==0) {
             found = 1;
             printf("Thong tin cua sinh vien ID %s: \n", id);
             printf("ID: %s\n", students[i].studentId);
@@ -100,37 +101,28 @@ void editInformation(struct Student students[50], int n) {
             printf("Ten: %s\n", students[i].name);
             printf("Email: %s\n", students[i].email);
             printf("So dien thoai: %s\n", students[i].phone);
-
             printf("Nhap ma lop hoc: ");
             fgets(students[i].classroomId, sizeof(students[i].classroomId), stdin);
-            students[i].classroomId[strcspn(students[i].classroomId, "\n")] = '\0';
-
+            students[i].classroomId[strcspn(students[i].classroomId, "\n")]='\0';
             printf("Nhap ten: ");
             fgets(students[i].name, sizeof(students[i].name), stdin);
-            students[i].name[strcspn(students[i].name, "\n")] = '\0';
-
+            students[i].name[strcspn(students[i].name, "\n")]='\0';
             printf("Nhap ngay sinh (dd mm yyyy): ");
             scanf("%d %d %d", &students[i].dateOfBirth.day, &students[i].dateOfBirth.month, &students[i].dateOfBirth.year);
             getchar();
-
             printf("Nhap gioi tinh (1:Nam,0:Nu): ");
             scanf("%d", &students[i].gender);
             getchar();
-
             printf("Nhap email: ");
             fgets(students[i].email, sizeof(students[i].email), stdin);
-            students[i].email[strcspn(students[i].email, "\n")] = '\0';
-
+            students[i].email[strcspn(students[i].email, "\n")]='\0';
             printf("Nhap so dien thoai: ");
             fgets(students[i].phone, sizeof(students[i].phone), stdin);
-            students[i].phone[strcspn(students[i].phone, "\n")] = '\0';
-
+            students[i].phone[strcspn(students[i].phone, "\n")]='\0';
             printf("Nhap mat khau: ");
             fgets(students[i].password, sizeof(students[i].password), stdin);
-            students[i].password[strcspn(students[i].password, "\n")] = '\0';
-
+            students[i].password[strcspn(students[i].password, "\n")]='\0';
             printf("Thong tin da duoc cap nhat thanh cong\n");
-
             printf("\n\t***Update The New Student***\n");
             printf("|======================================================================================================================|\n");
             printf("|\tID\t|ClassroomID\t|Name\t\t\t\t|Email\t\t\t\t|Phone\n");
@@ -146,5 +138,48 @@ void editInformation(struct Student students[50], int n) {
         printf("ID sinh vien khong ton tai hay nhap lai\n");
     }
 }
+void deleteStudent(struct Student students[50], int *n){
+	int i,j;
+	char id[10];
+	int found=0;
+	int choice;
+	printf("Nhap ID sinh vien can xoa: ");
+	scanf("%s", id);
+	for(i=0;i<*n;i++){
+		if(strcmp(students[i].studentId,id)==0){
+			found=1;
+			printf("Xac nhan xoa thong tin(1.Dong y): ");
+			scanf("%d",&choice);
+			if(choice==1){
+				for(j=i;j<*n-1;j++){
+					students[j]=students[j+1];
+				}
+				(*n)--;
+				printf("Xoa thanh cong!!\n");
+				break;
+					
+			}else{
+				printf("Xac nhan that bai");
+			}
+		}
+	}
+	if(!found){
+		printf("Khong tim thay ID can xoa!!\n");
+	}	
+}	
+void bubblesortStudent(struct Student students[50], int n){
+	struct Student temp;
+	int i,j;
 	
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(strcmp(students[i].name,students[j].name)>0){
+				temp=students[i];
+				students[i]=students[j];
+				students[j]=temp;
+			}
+		}
+	}
+	printf("Danh sach sinh vien da duoc sap xep thanh cong!!!");
+}
 

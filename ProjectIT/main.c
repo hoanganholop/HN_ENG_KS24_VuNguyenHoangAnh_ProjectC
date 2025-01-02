@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 						if(ch==1){
 							goto back;
 						}else{
-							goto exit;
+							choice=0;
 						}
 						break;
 					}
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 						if(ch==1){
 							goto back;
 						}else{
-							goto exit;
+							choice=0;
 						}
 						break;
 					}
@@ -67,15 +67,38 @@ int main(int argc, char *argv[]) {
 						if(ch==1){
 							goto back;
 						}else{
-							goto exit;
+							choice=0;
 						}
 						break;
 					}
 					case 5:{
+						system("cls");
+						deleteStudent(students, &n);
+						printf("Go back(1) or Exit(any key): ");
+						scanf("%d", &ch);
+						getchar();
+						if(ch==1){
+							goto back;
+						}else{
+							choice=0;
+						}
+						break;
+					}
+					case 6:{
+						system("cls");
+						bubblesortStudent(students, n);
+						printListInformation(students, n);
+						printf("Go back(1) or Exit(any key): ");
+						scanf("%d", &ch);
+						getchar();
+						if(ch==1){
+							goto back;
+						}else{
+							choice=0;
+						}
 						break;
 					}
 					case 0:{
-						exit:
 						printf("Ket thuc Menu Student\n");
 						break;
 					}
